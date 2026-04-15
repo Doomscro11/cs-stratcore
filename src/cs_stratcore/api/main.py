@@ -21,6 +21,8 @@ def health() -> dict[str, str]:
 
 @app.post("/strategic-assessment")
 def strategic_assessment(request: StrategicAssessmentRequest) -> StrategicAssessment:
+    """Return a deterministic placeholder strategic assessment."""
+
     return build_strategic_assessment(
         scenario=request.scenario,
         actors=request.actors,

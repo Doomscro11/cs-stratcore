@@ -4,7 +4,11 @@ from cs_stratcore.actor_models import Actor
 from cs_stratcore.belief_engine import Claim, ConfidenceLevel, Observation
 from cs_stratcore.recommender import RecommendationCandidate, RecommendationType
 from cs_stratcore.scenario_engine import EnvironmentState, Scenario
-from cs_stratcore.scoring_audit import AssessmentAuditMetadata, RiskAssessment, RiskLevel
+from cs_stratcore.scoring_audit import (
+    AssessmentAuditMetadata,
+    RiskAssessment,
+    RiskLevel,
+)
 from cs_stratcore.strategy_engine.assessment import StrategicAssessment
 from cs_stratcore.strategy_engine.models import Countermove, Move, MoveType, Outcome
 
@@ -20,6 +24,7 @@ def build_strategic_assessment(
     """Assemble a deterministic placeholder strategic assessment."""
 
     scenario_id = scenario.scenario_id
+    assessment_id = f"{scenario_id}-assessment-v1"
     context_summary = _context_summary(scenario=scenario, environment_state=environment_state)
 
     candidate_moves = _build_moves(scenario_id=scenario_id, actors=actors)
@@ -45,14 +50,14 @@ def build_strategic_assessment(
         moves=candidate_moves,
     )
     audit_metadata = AssessmentAuditMetadata(
-        assessment_id=f"{scenario_id}-assessment-v1",
+        assessment_id=assessment_id,
         schema_version="1.0.0",
         generated_at="deterministic-pass4",
         explanation_note="Deterministic placeholder orchestration for Pass 4.",
     )
 
     return StrategicAssessment(
-        assessment_id=f"{scenario_id}-assessment-v1",
+        assessment_id=assessment_id,
         scenario_id=scenario_id,
         observations=observations,
         claims=claims,
@@ -121,7 +126,12 @@ def _build_countermoves(
     return countermoves
 
 
-def _next_actor_id(*, actor_ids: list[str], current_actor_id: str, fallback_actor_id: str) -> str:
+def _next_actor_id(
+    *,
+    actor_ids: list[str],
+    current_actor_id: str,
+    fallback_actor_id: str,
+) -> str:
     if len(actor_ids) <= 1:
         return fallback_actor_id
 
@@ -183,7 +193,11 @@ def _build_risk_assessment(
     )
 
 
-def _derive_risk_level(*, claims: list[Claim], observations: list[Observation]) -> RiskLevel:
+def _derive_risk_level(
+    *,
+    claims: list[Claim],
+    observations: list[Observation],
+) -> RiskLevel:
     if any(claim.confidence == ConfidenceLevel.HIGH for claim in claims):
         return RiskLevel.HIGH
     if claims:
@@ -193,7 +207,11 @@ def _derive_risk_level(*, claims: list[Claim], observations: list[Observation]) 
     return RiskLevel.LOW
 
 
-def _build_recommendations(*, scenario_id: str, moves: list[Move]) -> list[RecommendationCandidate]:
+def _build_recommendations(
+    *,
+    scenario_id: str,
+    moves: list[Move],
+) -> list[RecommendationCandidate]:
     if not moves:
         return []
 

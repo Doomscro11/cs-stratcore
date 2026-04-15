@@ -8,6 +8,8 @@ from cs_stratcore.api.main import app
 from cs_stratcore.scoring_audit import RiskLevel
 from cs_stratcore.strategy_engine import StrategicAssessment
 
+ASSESSMENT_PATH = "/strategic-assessment"
+
 
 def _request_payload() -> dict[str, object]:
     return {
@@ -74,7 +76,7 @@ def test_strategic_assessment_route_module_importable() -> None:
 def test_post_strategic_assessment_returns_valid_response() -> None:
     client = TestClient(app)
 
-    response = client.post("/strategic-assessment", json=_request_payload())
+    response = client.post(ASSESSMENT_PATH, json=_request_payload())
 
     assert response.status_code == 200
 
@@ -95,8 +97,8 @@ def test_post_strategic_assessment_is_deterministic() -> None:
     client = TestClient(app)
     payload = _request_payload()
 
-    first_response = client.post("/strategic-assessment", json=payload)
-    second_response = client.post("/strategic-assessment", json=payload)
+    first_response = client.post(ASSESSMENT_PATH, json=payload)
+    second_response = client.post(ASSESSMENT_PATH, json=payload)
 
     assert first_response.status_code == 200
     assert second_response.status_code == 200
