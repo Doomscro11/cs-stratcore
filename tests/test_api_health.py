@@ -1,4 +1,4 @@
-"""Scaffold integrity tests for doctrine-first repository shape."""
+"""Executable foundation tests for API import and health behavior."""
 
 from importlib import import_module
 
