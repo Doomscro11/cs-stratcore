@@ -170,4 +170,10 @@ def test_structural_validation_is_lightweight_and_enforced() -> None:
         Objective(objective_id="", name="Invalid")
 
     with pytest.raises(ValidationError):
-        Actor(actor_id="actor-1", name="Blue Team", unknown_field="x")
+        Actor.model_validate(
+            {
+                "actor_id": "actor-1",
+                "name": "Blue Team",
+                "unknown_field": "x",
+            }
+        )
