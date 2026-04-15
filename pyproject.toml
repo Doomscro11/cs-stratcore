@@ -22,10 +22,13 @@ classifiers = [
   "Topic :: Security",
   "Typing :: Typed"
 ]
-dependencies = []
+dependencies = [
+  "fastapi>=0.115,<1.0"
+]
 
 [project.optional-dependencies]
 dev = [
+  "httpx>=0.28",
   "pytest>=8.3",
   "pytest-cov>=5.0",
   "ruff>=0.7",
