@@ -2,7 +2,13 @@
 
 `cs-stratcore` is the sovereign strategic interaction subsystem in the CounterSec / SAVANT ecosystem.
 
-This repository is currently in a doctrine-first scaffold phase. The objective of this pass is to freeze architecture, package boundaries, and repository shape before introducing service flow, canonical schemas, or solver logic.
+This repository has completed bounded implementation through Pass 5:
+
+- doctrine and scaffold,
+- executable foundation,
+- canonical schemas,
+- bounded strategic assessment API flow,
+- explicit external adapter seams (deferred, not integrated).
 
 ## Mission
 
@@ -16,14 +22,19 @@ This repository is currently in a doctrine-first scaffold phase. The objective o
 - Consumes curated structured state from sovereign upstream systems.
 - Emits structured, explainable, auditable strategic assessments and recommendation candidates.
 
-## Repository Scope (This Pass)
+## Repository Scope (Current State)
 
 - Single Python project with `src/` layout.
 - Unified namespace: `cs_stratcore`.
-- Internal module scaffolding and architectural docs.
-- CI workflow scaffold for lint, type-check, and tests.
+- FastAPI app entrypoint at `src/cs_stratcore/api/main.py` with:
+  - `GET /health` returning `{"service": "cs-stratcore", "status": "ok"}`
+  - deterministic `POST /strategic-assessment`
+- Canonical internal schemas across actor, scenario, belief, strategy, recommendation, and scoring/audit domains.
+- Deterministic placeholder service orchestration for strategic assessment.
+- Adapter seam contracts for OpenSpiel, POSGGym, and attack-graphs with deferred stubs (`NotImplementedError`).
+- CI workflow for lint, type-check, and tests.
 
-No substantive API implementation, business logic, canonical schemas, or adapter integrations are included in this pass.
+No external runtime integration is included yet for OpenSpiel, POSGGym, or attack-graphs.
 
 ## Planned Ecosystem Relationships
 
@@ -36,7 +47,7 @@ No substantive API implementation, business logic, canonical schemas, or adapter
 - `ASH` (assurance, policy, audit, replay, promotion)
 - `SAVANT` (mission-level federated operating system)
 
-Future adapter seams are reserved for:
+Adapter seams are present for:
 
 - OpenSpiel
 - POSGGym
@@ -71,4 +82,4 @@ cs-stratcore/
 
 ## Status
 
-Scaffold and doctrine are intentionally ahead of implementation. Later passes should add executable foundations without changing the structural contract defined here.
+`cs-stratcore` is structurally complete through Pass 5. The architecture is stable, canonical model ownership remains internal, service behavior is deterministic and bounded, and external capability seams are explicit but deferred.
