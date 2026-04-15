@@ -5,11 +5,30 @@ from pydantic import ValidationError
 
 from cs_stratcore.actor_models import Actor, Relationship, RelationshipType
 from cs_stratcore.belief_engine import Claim, ConfidenceLevel, Observation
-from cs_stratcore.common import Capability, Constraint, DerivationKind, Objective, SourceKind
-from cs_stratcore.recommender import RecommendationCandidate, RecommendationType
+from cs_stratcore.common import (
+    Capability,
+    Constraint,
+    DerivationKind,
+    Objective,
+    SourceKind,
+)
+from cs_stratcore.recommender import (
+    RecommendationCandidate,
+    RecommendationType,
+)
 from cs_stratcore.scenario_engine import EnvironmentState, Scenario
-from cs_stratcore.scoring_audit import AssessmentAuditMetadata, RiskAssessment, RiskLevel
-from cs_stratcore.strategy_engine import Countermove, Move, MoveType, Outcome, StrategicAssessment
+from cs_stratcore.scoring_audit import (
+    AssessmentAuditMetadata,
+    RiskAssessment,
+    RiskLevel,
+)
+from cs_stratcore.strategy_engine import (
+    Countermove,
+    Move,
+    MoveType,
+    Outcome,
+    StrategicAssessment,
+)
 
 
 def test_required_models_import_stably() -> None:
