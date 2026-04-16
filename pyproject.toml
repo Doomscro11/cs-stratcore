@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "Proprietary" }
 authors = [
-  { name = "CounterSec" }
+  { name = "CounterSec" },
 ]
 classifiers = [
   "Development Status :: 2 - Pre-Alpha",
@@ -22,14 +22,17 @@ classifiers = [
   "Topic :: Security",
   "Typing :: Typed"
 ]
-dependencies = []
+dependencies = [
+  "fastapi>=0.115,<1.0",
+]
 
 [project.optional-dependencies]
 dev = [
+  "httpx>=0.28",
   "pytest>=8.3",
   "pytest-cov>=5.0",
   "ruff>=0.7",
-  "mypy>=1.12"
+  "mypy>=1.12",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -38,12 +41,17 @@ packages = ["src/cs_stratcore"]
 [tool.pytest.ini_options]
 minversion = "8.0"
 addopts = "-ra"
-testpaths = ["tests"]
+testpaths = [
+  "tests",
+]
 
 [tool.ruff]
 line-length = 100
 target-version = "py311"
-src = ["src", "tests"]
+src = [
+  "src",
+  "tests",
+]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
@@ -61,4 +69,7 @@ check_untyped_defs = true
 pretty = true
 namespace_packages = false
 mypy_path = "src"
-files = ["src", "tests"]
+files = [
+  "src",
+  "tests",
+]

@@ -20,12 +20,13 @@ This repository does not:
 
 ## Lifecycle Posture
 
-This pass freezes architecture and package shape only. Future passes add:
+Repository status through Pass 5:
 
-1. executable foundations and service flow,
-2. canonical schemas,
-3. adapter implementation and integration behavior,
-4. determinism and hardening controls for production promotion.
+1. doctrine and scaffold are established,
+2. executable API foundation and bounded service flow are present,
+3. canonical schemas are in place as internal source of truth,
+4. adapter seams exist for OpenSpiel, POSGGym, and attack-graphs,
+5. external runtime adapter integrations remain deferred.
 
 ## Ecosystem Position
 
